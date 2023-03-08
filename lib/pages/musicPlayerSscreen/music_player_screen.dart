@@ -1,5 +1,4 @@
 import 'package:music_player1/functions/databaseFunctions/favourites_db.dart';
-import 'package:music_player1/functions/music_functions.dart';
 import 'package:music_player1/models/models.dart';
 import 'package:music_player1/pages/menuIcon/playlist_dialog_box.dart';
 import 'package:rxdart/rxdart.dart';
@@ -57,14 +56,13 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
   @override
   void initState() {
     super.initState();
- 
+
     player.currentIndexStream.listen((index) {
       if (index != null) {
         updateCurrentPlayingSongDetails(index);
       }
     });
   }
-
 
 //used to control the player playpause
   bool play = true;
@@ -115,12 +113,12 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                           IconButton(
                               onPressed: () {
                                 playlistAddButton.playlistDialogue(
-                                  image: currentSongImg??widget.imageId, 
-                                  artist: currentSongArtist??widget.artist,
-                                   title:currentSongTitle?? widget.title,
-                                    id: currentSongId??widget.id, 
-                                    path: currentSongPath??widget.pathAudio, 
-                                   context: context);
+                                    image: currentSongImg ?? widget.imageId,
+                                    artist: currentSongArtist ?? widget.artist,
+                                    title: currentSongTitle ?? widget.title,
+                                    id: currentSongId ?? widget.id,
+                                    path: currentSongPath ?? widget.pathAudio,
+                                    context: context);
                               },
                               icon: const Icon(
                                 Icons.menu,
@@ -152,21 +150,20 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                                     ));
                               } else {
                                 return IconButton(
-                                    onPressed: () {
-                                      deleteFavourite(
-                                          currentSongId ?? widget.id,
-                                          context,
-                                          currentSongTitle ?? widget.title);
-                                        isFav = false;
+                                  onPressed: () {
+                                    deleteFavourite(
+                                        currentSongId ?? widget.id,
+                                        context,
+                                        currentSongTitle ?? widget.title);
+                                    isFav = false;
 
-                                      setState(() {
-                                      });
-                                    },
-                                    icon: const Icon(
-                                      Icons.favorite,
-                                      color: Colors.white,
-                                    ),
-                                  );
+                                    setState(() {});
+                                  },
+                                  icon: const Icon(
+                                    Icons.favorite,
+                                    color: Colors.white,
+                                  ),
+                                );
                               }
                             },
                           )
@@ -197,7 +194,8 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                       ),
                       Text(
                         currentSongArtist ?? '<unknown>',
-                        style: TextStyle(color: iconColor,overflow: TextOverflow.ellipsis),
+                        style: TextStyle(
+                            color: iconColor, overflow: TextOverflow.ellipsis),
                       ),
                       const SizedBox(
                         height: 20,
@@ -249,31 +247,35 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                             ),
                           ),
                           StreamBuilder<PlayerState>(
-                                    stream: player.playerStateStream,
-                                    builder: (context, snapshot) {
-                                      final playerState = snapshot.data;
-                                      final playing = playerState?.playing;
-                                       if (playing != true) {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(0),
-                                          child: IconButton(
-                                            icon: const Icon(Icons.play_arrow,color: Colors.white,),
-                                            iconSize: 60.0,
-                                            onPressed: player.play,
-                                          ),
-                                        );
-                                      } else {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(0),
-                                          child: IconButton(
-                                            icon: const Icon(Icons.pause,color: Colors.white),
-                                            iconSize: 60.0,
-                                            onPressed: player.pause,
-                                          ),
-                                        );
-                                      } 
-                                    },
+                            stream: player.playerStateStream,
+                            builder: (context, snapshot) {
+                              final playerState = snapshot.data;
+                              final playing = playerState?.playing;
+                              if (playing != true) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.play_arrow,
+                                      color: Colors.white,
+                                    ),
+                                    iconSize: 60.0,
+                                    onPressed: player.play,
                                   ),
+                                );
+                              } else {
+                                return Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.pause,
+                                        color: Colors.white),
+                                    iconSize: 60.0,
+                                    onPressed: player.pause,
+                                  ),
+                                );
+                              }
+                            },
+                          ),
                           IconButton(
                             onPressed: () {
                               setState(() {
@@ -304,7 +306,6 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
   }
 
   void updateCurrentPlayingSongDetails(int index) {
-    
     setState(() {
       if (widget.songDetails.isNotEmpty) {
         currentSongTitle = widget.songDetails[index].songTitle;

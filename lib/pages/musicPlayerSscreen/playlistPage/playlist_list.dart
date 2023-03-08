@@ -92,7 +92,7 @@ class _PlaylsitListPageState extends State<PlaylsitListPage>
                               child: ListTile(
                                 onTap: () {
                                   musicFunction.playingAudio(index);
-                              musicFunction.update(collection, index);                  
+                              // musicFunction.update(collection, index);                  
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

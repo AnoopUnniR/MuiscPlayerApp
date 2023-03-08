@@ -26,6 +26,7 @@ mixin MostPlayedSongsClass {
     List check = mostDB.values.toList();
     int index = check.indexWhere((element) => element.id == value.id);
     value.count = check[index].count + 1;
+    print('${value.count}jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
     await mostDB.putAt(index, value);
     await getAllMostPlayed();
   }
@@ -42,7 +43,8 @@ mixin MostPlayedSongsClass {
     List reversedlist = allCountValues.reversed
         .take(8)
         .where((element) => element != 0)
-        .toSet().toList();
+        .toSet()
+        .toList();
     List intexOfSong = [];
     for (int count in reversedlist) {
       int index = check.indexWhere((element) => element.count == count);

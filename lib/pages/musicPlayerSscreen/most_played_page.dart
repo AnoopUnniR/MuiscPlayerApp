@@ -111,7 +111,7 @@ class MostPlayedPage extends StatelessWidget {
                               ),
                               onTap: () {
                                 musicFunction.playingAudio(index);
-                              musicFunction.update(mostPlayedList,index);
+                              // musicFunction.update(mostPlayedList,index);
 
                                 Navigator.push(
                                   context,

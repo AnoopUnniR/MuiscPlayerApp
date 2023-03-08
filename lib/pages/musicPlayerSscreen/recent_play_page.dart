@@ -110,7 +110,7 @@ class RecentlyPlayedPage extends StatelessWidget {
                               ),
                               onTap: () {
                               musicFunction.playingAudio(index);
-                              musicFunction.update(reversed,index);
+                              // musicFunction.update(reversed,index);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

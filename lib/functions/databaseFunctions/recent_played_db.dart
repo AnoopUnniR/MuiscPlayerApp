@@ -16,22 +16,13 @@ mixin RecentPlayedFunction {
         recentlist.where((element) => element.id == value.id).isEmpty;
     if (checkSong) {
       await recentDB.add(value);
-      print(checkSong);
-      print(
-          'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
     } else {
       int index = recentlist.indexWhere((element) => element.id == value.id);
       await recentDB.deleteAt(index);
       await recentDB.add(value);
-      print(
-          'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
     }
     if (recentDB.length > 8) {
       await recentDB.deleteAt(0);
-      var a = recentDB.values;
-      print(recentDB.getAt(0));
-      print(
-          'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
     }
     // await recentDB.clear();
     await getAllRecent();

@@ -91,7 +91,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                               setState(() {
                                 isPlayerOn = true;
                               });
-                              musicFunction.update(favouritesLists, index);
+                              // musicFunction.update(favouritesLists, index);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

@@ -354,7 +354,6 @@ class _HomeScreenState extends State<HomeScreen>
                               //listing songs//------------------------------------------------
                               child: ListTile(
                                 onTap: () {
-                  
                                   musicFunction.playingAudio(index);
                                   // print(
                                   // 'printing fro, the list mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm');

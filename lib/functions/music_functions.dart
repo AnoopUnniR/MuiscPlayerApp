@@ -75,10 +75,7 @@ class MusicFunctionsClass
     await player.play();
   }
 
-  update(songs, [index]) {
-    player.currentIndexStream.listen((value) {
-      int event = value ?? index;
-    
+  update(songs, [event]) {
         var title = songs[event].songTitle;
         var artist = songs[event].songArtist;
         var img = songs[event].imageId;
@@ -98,6 +95,6 @@ class MusicFunctionsClass
             songArtist: artist,
             id: id);
         updateMostPlayed(most);
-    });
+    
   }
 }

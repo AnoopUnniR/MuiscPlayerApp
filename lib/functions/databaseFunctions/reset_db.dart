@@ -4,6 +4,7 @@ import 'package:music_player1/functions/databaseFunctions/favourites_db.dart';
 import 'package:music_player1/functions/databaseFunctions/most_played_db.dart';
 import 'package:music_player1/functions/databaseFunctions/playlist_db.dart';
 import 'package:music_player1/functions/databaseFunctions/recent_played_db.dart';
+import 'package:music_player1/main.dart';
 import 'package:music_player1/models/models.dart';
 
 class ResetApp
@@ -14,6 +15,8 @@ class ResetApp
         RecentPlayedFunction,
         MostPlayedSongsClass {
   resetAppFunction() async {
+    await player.stop();
+    await player.dispose();
     final songDB = await Hive.openBox<SongsListModel>('songs_db');
     final favouritesDB = await Hive.openBox<FavouritesModel>('favourites');
     final playlistDB = await Hive.openBox<PlayListModel>('playlist_db');
