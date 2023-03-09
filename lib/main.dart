@@ -34,10 +34,8 @@ Future<void> main() async {
     await audioQuery.permissionsRequest();
   }
 
-
   var musicFunction = MusicFunctionsClass();
   await musicFunction.songList();
-
 
   runApp(const MyApp());
 }

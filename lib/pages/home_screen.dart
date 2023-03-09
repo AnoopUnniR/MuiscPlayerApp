@@ -49,11 +49,11 @@ class _HomeScreenState extends State<HomeScreen>
     });
   }
 
-  // @override
-  // void dispose() {
-  //   player;
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    player;
+    super.dispose();
+  }
 
   List songs = [];
   List songDetails = [];
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen>
                     builder: (context) => const SettingsPage(),
                   ),
                 )),
-        title: const Text("MusiC"),
+        title: const Text("Zong"),
         centerTitle: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen>
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SearchPage(page: 1),
+                  builder: (context) => const SearchPage(),
                 ),
               );
             },
@@ -355,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen>
                               child: ListTile(
                                 onTap: () {
                                   musicFunction.playingAudio(index);
-                                  
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

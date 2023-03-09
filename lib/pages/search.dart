@@ -9,8 +9,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 
 String search = '';
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key, required this.page});
-  final int page;
+  const SearchPage({super.key});
   @override
   State<SearchPage> createState() => SearchPageState();
 }
@@ -100,20 +99,6 @@ class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedF
                       child: ListTile(
                         onTap: () async {
                           _musicFunction.playingAudio(index);
-                          // var recent = RecentPlayModel(
-                                  //     songTitle: title,
-                                  //     songuri: path,
-                                  //     imageId: image,
-                                  //     id: id,
-                                  //     songArtist: artist);
-                                  // addRecent(recent);
-                                  // var most = MostPlayModel(
-                                  //     songTitle: title,
-                                  //     songuri: path,
-                                  //     imageId: image,
-                                  //     songArtist: artist,
-                                  //     id: id);
-                                  // updateMostPlayed(most);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -125,7 +110,8 @@ class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedF
                                   imageId: image,
                                   id: id!,
                                   songPath: const [],
-                                  songDetails: const []),
+                                  songDetails: const [],
+                                ),
                             ),
                           );
                         },
@@ -154,7 +140,7 @@ class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedF
                             id: id,
                             image: image,
                             path: path,
-                            title: title),
+                            title: title,),
                       ),
                     );
                   },

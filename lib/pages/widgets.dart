@@ -8,8 +8,7 @@ Widget circleUI(double start, double y) {
       height: 350,
       width: 350,
       decoration: const BoxDecoration(
-         shape: BoxShape.circle,
-          color: Color.fromARGB(255, 126, 77, 251)),
+          shape: BoxShape.circle, color: Color.fromARGB(255, 126, 77, 251)),
     ),
   );
 }
@@ -19,18 +18,19 @@ Widget circleWidget() {
   return Stack(
     children: [
       Align(
-        alignment:const AlignmentDirectional(0,-3),
+        alignment: const AlignmentDirectional(0, -3),
         child: Container(
-          width: 400, 
+          width: 400,
           height: 400,
           // color: Colors.blue,
           decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(400),),
-              color: Color(0xff121526),),
+            borderRadius: BorderRadius.all(
+              Radius.circular(400),
+            ),
+            color: Color(0xff121526),
+          ),
         ),
       ),
     ],
   );
 }
-
-

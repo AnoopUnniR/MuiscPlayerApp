@@ -1,4 +1,5 @@
 import 'package:music_player1/functions/databaseFunctions/favourites_db.dart';
+import 'package:music_player1/functions/music_functions.dart';
 import 'package:music_player1/models/models.dart';
 import 'package:music_player1/pages/musicPlayerSscreen/playlistPage/playlist_dialog_box.dart';
 import 'package:rxdart/rxdart.dart';
@@ -17,6 +18,7 @@ String? currentSongArtist;
 int? currentSongImg;
 int? currentSongId;
 String? currentSongPath;
+List songDetailsList = [];
 
 class MusicPlayerScreen extends StatefulWidget {
   final String pathAudio;
@@ -59,8 +61,8 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
 
     player.currentIndexStream.listen((index) {
       if (index != null) {
-        if(mounted){
-        updateCurrentPlayingSongDetails(index);
+        if (mounted) {
+          updateCurrentPlayingSongDetails(index);
         }
       }
     });
@@ -76,6 +78,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
   var playlistAddButton = PlaylistAddDialogue();
   @override
   Widget build(BuildContext context) {
+    songDetailsList = widget.songDetails;
     bool? isFav = isInFav(currentSongId ?? widget.id);
     var iconColor = const Color.fromARGB(255, 238, 238, 238);
     currentSongImg = widget.imageId;
@@ -136,7 +139,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                               if (isFav != true) {
                                 return IconButton(
                                     onPressed: () {
-                                      var listFavourites = FavouritesModel(
+                                      final listFavourites = FavouritesModel(
                                           imageId:
                                               currentSongImg ?? widget.imageId,
                                           songTitle:
@@ -313,6 +316,8 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
   }
 
   void updateCurrentPlayingSongDetails(int index) {
+    final musicFunction = MusicFunctionsClass();
+    musicFunction.update(widget.songDetails, index);
     setState(() {
       if (widget.songDetails.isNotEmpty) {
         currentSongTitle = widget.songDetails[index].songTitle;

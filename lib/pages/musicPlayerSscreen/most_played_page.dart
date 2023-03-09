@@ -62,17 +62,11 @@ class MostPlayedPage extends StatelessWidget {
                             var artist = mostPlayedDetails[index].songArtist!;
                             var image = mostPlayedDetails[index].imageId;
                             var id = mostPlayedDetails[index].id;
-                            int count = mostPlayedDetails[index].count;
                             return InkWell(
                               child: Card(
                                 color: Colors.white,
                                 child: Stack(
                                   children: [
-                                    Align(alignment: Alignment.topLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Text('Played : $count',style:const TextStyle(color: Color.fromARGB(255, 64, 58, 4)),),
-                                    ),),
                                     Align(
                                         alignment: Alignment.topRight,
                                         child: menuButton.menuIcon(

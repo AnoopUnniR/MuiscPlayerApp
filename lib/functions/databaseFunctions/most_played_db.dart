@@ -40,7 +40,7 @@ mixin MostPlayedSongsClass {
     }
     allCountValues.sort();
     List reversedlist = allCountValues.reversed
-        .take(8)
+        // .take(8)
         .where((element) => element != 0)
         .toSet()
         .toList();
