@@ -42,7 +42,6 @@ mixin FavouriteFunctionClass {
 
   deleteFavourite(id, context, title) async {
     List check = [];
-    // await Hive.close();
     final favouriteDB = await Hive.openBox<FavouritesModel>('favourites');
     for (var song in favouriteDB.values) {
       check.add(song.id);

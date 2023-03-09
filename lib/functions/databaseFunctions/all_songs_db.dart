@@ -19,7 +19,6 @@ mixin AllSongsClass {
       await songDB.put(id, value);
       await getAllSongs();
     }
-    // await Hive.close();
   }
 
   Future<void> getAllSongs() async {
@@ -32,7 +31,6 @@ mixin AllSongsClass {
   }
 
   delete() async {
-    // await Hive.close();
     final songDB = await Hive.openBox<SongsListModel>('songs_db');
     await songDB.clear();
   }

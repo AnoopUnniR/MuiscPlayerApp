@@ -26,7 +26,6 @@ mixin MostPlayedSongsClass {
     List check = mostDB.values.toList();
     int index = check.indexWhere((element) => element.id == value.id);
     value.count = check[index].count + 1;
-    print('${value.count}jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
     await mostDB.putAt(index, value);
     await getAllMostPlayed();
   }

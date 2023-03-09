@@ -12,7 +12,6 @@ mixin PlaylistFunctionsClass {
     value.playListId = id;
     await playlistDB.put(id, value);
     await getAllPlaylist();
-    // await playlistDB.clear();
   }
 
   Future<void> getAllPlaylist() async {
@@ -21,7 +20,7 @@ mixin PlaylistFunctionsClass {
     playListNotifier.value.addAll(playlistDB.values);
     // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
     playListNotifier.notifyListeners();
-    // await Hive.close();
+    
   }
 
   deletePlaylist(int index, int id) async {
@@ -35,10 +34,7 @@ mixin PlaylistFunctionsClass {
     for (var song in playlistSongs) {
       removeFromPlaylistDelete(song.songid);
     }
-    // await playlistDB.clear();
-    // await  playlistsongDB.clear();
     await getAllPlaylist();
-    // await Hive.close();
   }
 
   addSongsPlaylist(PlayListSongsModel value, context) async {
@@ -85,7 +81,7 @@ mixin PlaylistFunctionsClass {
     for (var song in playlistsongDB.values) {
       songs.add(song);
     }
-    int index = songs.indexWhere((element) => element.songid == indexId);
+    int index = songs.indexWhere((element) => element.id == indexId);
     await playlistsongDB.deleteAt(index);
     getAllPlaylistSongs();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -95,6 +91,7 @@ mixin PlaylistFunctionsClass {
     );
   }
 
+//to delete songs from playlist when playlist is deleted
   removeFromPlaylistDelete(indexId) async {
     List songs = [];
     final playlistsongDB =
@@ -102,7 +99,7 @@ mixin PlaylistFunctionsClass {
     for (var song in playlistsongDB.values) {
       songs.add(song);
     }
-    int index = songs.indexWhere((element) => element.songid == indexId);
+    int index = songs.indexWhere((element) => element.id == indexId);
     await playlistsongDB.deleteAt(index);
     getAllPlaylistSongs();
   }

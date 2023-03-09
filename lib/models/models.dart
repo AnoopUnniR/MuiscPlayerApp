@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 part 'models.g.dart';
-
+// for all songs from storage
 @HiveType(typeId: 1)
 class SongsListModel {
   @HiveField(0)
@@ -24,7 +24,7 @@ class SongsListModel {
       required this.songuri,
       required this.imageId});
 }
-
+// for favouriites
 @HiveType(typeId: 2)
 class FavouritesModel {
   @HiveField(0)
@@ -46,6 +46,7 @@ class FavouritesModel {
       required this.imageId});
 }
 
+// for creating playlist
 @HiveType(typeId: 3)
 class PlayListModel {
   @HiveField(0)
@@ -58,6 +59,7 @@ class PlayListModel {
   });
 }
 
+// for recently played 
 @HiveType(typeId: 4)
 class RecentPlayModel {
   @HiveField(0)
@@ -79,6 +81,7 @@ class RecentPlayModel {
       required this.imageId});
 }
 
+// for adding songs to the playlist
 @HiveType(typeId: 5)
 class PlayListSongsModel {
   @HiveField(0)
@@ -103,6 +106,7 @@ class PlayListSongsModel {
       required this.imageId});
 }
 
+//for most played
 @HiveType(typeId: 6)
 class MostPlayModel {
   @HiveField(0)

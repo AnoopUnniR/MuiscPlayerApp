@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_player1/functions/databaseFunctions/favourites_db.dart';
 import 'package:music_player1/models/models.dart';
-import 'package:music_player1/pages/menuIcon/playlist_dialog_box.dart';
+
 
 class MenuIconClass extends PlaylistAddDialogue with FavouriteFunctionClass {
   menuIcon({
@@ -104,7 +104,13 @@ class MenuIconClass extends PlaylistAddDialogue with FavouriteFunctionClass {
                           backgroundColor: const Color(0xff121526)),
                       onPressed: () {
                         Navigator.pop(context);
-                        playlistDialogue(image: image, artist: artist, title: title, id: id, path: path, context: context);
+                        playlistDialogue(
+                            image: image,
+                            artist: artist,
+                            title: title,
+                            id: id,
+                            path: path,
+                            context: context);
                       },
                       child: const Text(
                         'ADD TO PLAYLIST',
@@ -138,5 +144,3 @@ class MenuIconClass extends PlaylistAddDialogue with FavouriteFunctionClass {
     );
   }
 }
-
-
