@@ -1,5 +1,6 @@
 import 'package:music_player1/functions/databaseFunctions/favourites_db.dart';
 import 'package:music_player1/models/models.dart';
+import 'package:music_player1/pages/musicPlayerSscreen/playlistPage/playlist_dialog_box.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player1/main.dart';
@@ -58,9 +59,16 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
 
     player.currentIndexStream.listen((index) {
       if (index != null) {
+        if(mounted){
         updateCurrentPlayingSongDetails(index);
+        }
       }
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
 //used to control the player playpause

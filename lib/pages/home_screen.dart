@@ -49,11 +49,11 @@ class _HomeScreenState extends State<HomeScreen>
     });
   }
 
-  @override
-  void dispose() {
-    player;
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   player;
+  //   super.dispose();
+  // }
 
   List songs = [];
   List songDetails = [];
@@ -355,22 +355,7 @@ class _HomeScreenState extends State<HomeScreen>
                               child: ListTile(
                                 onTap: () {
                                   musicFunction.playingAudio(index);
-                                  // print(
-                                  // 'printing fro, the list mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm');
-                                  // var recent = RecentPlayModel(
-                                  //     songTitle: title,
-                                  //     songuri: path,
-                                  //     imageId: image,
-                                  //     id: id,
-                                  //     songArtist: artist);
-                                  // addRecent(recent);
-                                  // var most = MostPlayModel(
-                                  //     songTitle: title,
-                                  //     songuri: path,
-                                  //     imageId: image,
-                                  //     songArtist: artist,
-                                  //     id: id);
-                                  // updateMostPlayed(most);
+                                  
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
