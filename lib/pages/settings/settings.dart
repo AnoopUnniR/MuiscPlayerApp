@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_player1/functions/databaseFunctions/reset_db.dart';
 import 'package:music_player1/main.dart';
 import 'package:music_player1/pages/settings/pages/about_us.dart';
+import 'package:music_player1/pages/settings/pages/privacy_policy_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -55,11 +56,12 @@ class SettingsPage extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(10)),
-              child: const ListTile(
-                title: Text(
+              child: ListTile(
+                title:const Text(
                   'Privacy Policy',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const PrivacyPage(),)),
               ),
             ),
           ),
@@ -119,6 +121,8 @@ class SettingsPage extends StatelessWidget {
                           child: const Text('Yes'),
                         ),
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 119, 109, 234)),
                             onPressed: () {
                               Navigator.pop(context);
                             },

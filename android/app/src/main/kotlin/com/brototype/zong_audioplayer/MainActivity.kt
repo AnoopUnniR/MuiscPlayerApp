@@ -1,4 +1,4 @@
-package com.example.music_player1
+package com.brototype.zong_audioplayer
 
 import io.flutter.embedding.android.FlutterActivity
 

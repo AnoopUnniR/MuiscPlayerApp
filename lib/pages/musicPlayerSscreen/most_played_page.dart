@@ -14,6 +14,8 @@ class MostPlayedPage extends StatelessWidget {
     List mostPlayedPlayer = [];
     var menuButton = MenuIconClass();
     var musicFunction = MusicFunctionsClass();
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
           title: const Text("Most Played"),
@@ -38,8 +40,11 @@ class MostPlayedPage extends StatelessWidget {
                       valueListenable: mostPlayedListNotifier,
                       builder: (context, List mostPlayedList, child) {
                         if (mostPlayedList.isEmpty) {
-                          return const Center(
-                            child: Text('nothing to show',style: TextStyle(color: Colors.white),),
+                          return SizedBox(
+                            height: height,
+                            child: const Center(
+                              child: Text('nothing to show',style: TextStyle(color: Colors.white),),
+                            ),
                           );
                         }
                         mostPlayedDetails.clear();
@@ -47,7 +52,6 @@ class MostPlayedPage extends StatelessWidget {
                           mostPlayedDetails.add(song);
                           mostPlayedPlayer.add(song.songuri);
                         }
-                        musicFunction.creatingPlayerList(mostPlayedPlayer);
                         return GridView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -103,10 +107,7 @@ class MostPlayedPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {
-                                musicFunction.playingAudio(index);
-                              // musicFunction.update(mostPlayedList,index);
-
+                              onTap: ()async {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -122,6 +123,11 @@ class MostPlayedPage extends StatelessWidget {
                                     ),
                                   ),
                                 );
+                           await musicFunction.creatingPlayerList(mostPlayedPlayer);
+                           musicFunction.playingAudio(index);
+                              // musicFunction.update(mostPlayedList,index);
+
+                                
                               },
                             );
                           },

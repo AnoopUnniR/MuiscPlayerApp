@@ -75,26 +75,25 @@ class MusicFunctionsClass
     await player.play();
   }
 
-  update(songs, [event]) {
-        var title = songs[event].songTitle;
-        var artist = songs[event].songArtist;
-        var img = songs[event].imageId;
-        var id = songs[event].id;
-        var path = songs[event].songuri;
-        var recent = RecentPlayModel(
-            songTitle: title,
-            songuri: path,
-            imageId: img,
-            id: id,
-            songArtist: artist);
-        addRecent(recent);
-        var most = MostPlayModel(
-            songTitle: title,
-            songuri: path,
-            imageId: img,
-            songArtist: artist,
-            id: id);
-        updateMostPlayed(most);
-    
+  update(songs, [event]) async {
+    var title = songs[event].songTitle;
+    var artist = songs[event].songArtist;
+    var img = songs[event].imageId;
+    var id = songs[event].id;
+    var path = songs[event].songuri;
+    var recent = RecentPlayModel(
+        songTitle: title,
+        songuri: path,
+        imageId: img,
+        id: id,
+        songArtist: artist);
+    await addRecent(recent);
+    var most = MostPlayModel(
+        songTitle: title,
+        songuri: path,
+        imageId: img,
+        songArtist: artist,
+        id: id);
+    await updateMostPlayed(most);
   }
 }

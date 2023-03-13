@@ -355,7 +355,6 @@ class _HomeScreenState extends State<HomeScreen>
                               child: ListTile(
                                 onTap: () {
                                   musicFunction.playingAudio(index);
-
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

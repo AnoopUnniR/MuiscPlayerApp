@@ -30,6 +30,7 @@ class _FavouritesPageState extends State<FavouritesPage>
     List favouritesDetails = [];
     var musicFunction = MusicFunctionsClass();
     double width = MediaQuery.of(context).size.width / 100;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color(0xff121526),
       appBar: AppBar(
@@ -53,10 +54,13 @@ class _FavouritesPageState extends State<FavouritesPage>
                 builder: (BuildContext context,
                     List<FavouritesModel> favouritesLists, Widget? child) {
                   if (favouritesLists.isEmpty) {
-                    return const Center(
-                      child: Text(
-                        'no audio files found',
-                        style: TextStyle(color: Colors.white),
+                    return  SizedBox(
+                      height: height,
+                      child:const Center(
+                        child: Text(
+                          'nothing to show',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     );
                   }
@@ -66,7 +70,6 @@ class _FavouritesPageState extends State<FavouritesPage>
                     favourites.add(song.songuri);
                     favouritesDetails.add(song);
                   }
-                  musicFunction.creatingPlayerList(favourites);
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -86,11 +89,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                           child: ListTile(
                             contentPadding:
                                 const EdgeInsets.symmetric(horizontal: 10),
-                            onTap: () {
-                              musicFunction.playingAudio(index);
-                              setState(() {
-                                isPlayerOn = true;
-                              });
+                            onTap: () async {
                               // musicFunction.update(favouritesLists, index);
                               Navigator.push(
                                 context,
@@ -107,6 +106,12 @@ class _FavouritesPageState extends State<FavouritesPage>
                                   ),
                                 ),
                               );
+                              await musicFunction
+                                  .creatingPlayerList(favourites);
+                              musicFunction.playingAudio(index);
+                              setState(() {
+                                isPlayerOn= true;
+                              });
                             },
                             title: Text(
                               title,

@@ -15,6 +15,7 @@ class RecentlyPlayedPage extends StatelessWidget {
     List recentPlayer = [];
     var menuButton = MenuIconClass();
     var musicFunction = MusicFunctionsClass();
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
           title: const Text("Recently Played"),
@@ -32,8 +33,7 @@ class RecentlyPlayedPage extends StatelessWidget {
         child: SafeArea(
           child: Stack(
             children: [
-              SingleChildScrollView(
-                
+              SingleChildScrollView(               
                 child: Column(
                   children: [
                     ValueListenableBuilder(
@@ -41,8 +41,11 @@ class RecentlyPlayedPage extends StatelessWidget {
                       builder:
                           (context, List<RecentPlayModel> recentList, child) {
                         if (recentList.isEmpty) {
-                          return const Center(
-                            child: Text('nothing to show',style: TextStyle(color: Colors.white),),
+                          return SizedBox(
+                            height: height,
+                            child: const Center(
+                              child: Text('nothing to show',style: TextStyle(color: Colors.white),),
+                            ),
                           );
                         }
                         recentDetails.clear();
@@ -51,7 +54,6 @@ class RecentlyPlayedPage extends StatelessWidget {
                           recentDetails.add(song);
                           recentPlayer.add(song.songuri);
                         }
-                        musicFunction.creatingPlayerList(recentPlayer);
                         return GridView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -65,8 +67,7 @@ class RecentlyPlayedPage extends StatelessWidget {
                             var title = recentDetails[index].songTitle;
                             var artist = recentDetails[index].songArtist!;
                             var image = recentDetails[index].imageId;
-                            var id = recentDetails[index].id;
-              
+                            var id = recentDetails[index].id;          
                             return InkWell(
                               child: Card(
                                 color: Colors.white,
@@ -108,8 +109,8 @@ class RecentlyPlayedPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {
-                              musicFunction.playingAudio(index);
+                              onTap: () async{
+      
                               // musicFunction.update(reversed,index);
                                 Navigator.push(
                                   context,
@@ -126,6 +127,8 @@ class RecentlyPlayedPage extends StatelessWidget {
                                     ),
                                   ),
                                 );
+                             await musicFunction.creatingPlayerList(recentPlayer);
+                              musicFunction.playingAudio(index);
                               },
                             );
                           },

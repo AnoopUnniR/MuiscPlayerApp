@@ -52,7 +52,10 @@ class _PlayListPageState extends State<PlayListPage>
               children: [
                 //create new playlist button
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 119, 109, 234)),
                   onPressed: () {
+                    
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(

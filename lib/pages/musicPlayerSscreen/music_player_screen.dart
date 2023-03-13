@@ -68,11 +68,6 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
 //used to control the player playpause
   bool play = true;
   var playlistAddButton = PlaylistAddDialogue();

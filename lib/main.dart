@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_player1/functions/music_functions.dart';
 import 'package:music_player1/models/models.dart';
+import 'package:music_player1/pages/home_screen.dart';
 import 'package:music_player1/pages/splash_screen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -36,7 +37,6 @@ Future<void> main() async {
 
   var musicFunction = MusicFunctionsClass();
   await musicFunction.songList();
-
   runApp(const MyApp());
 }
 

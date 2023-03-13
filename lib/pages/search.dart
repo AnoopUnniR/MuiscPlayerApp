@@ -128,12 +128,12 @@ class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedF
                           style: const TextStyle(color: Colors.white),
                         ),
                         leading: QueryArtworkWidget(
-                          id: image!,
-                          type: ArtworkType.AUDIO,
-                          nullArtworkWidget: Image.asset(
-                            'assets/mmmm.jpeg',
-                          ),
-                        ),
+                                  id: image!,
+                                  type: ArtworkType.AUDIO,
+                                  nullArtworkWidget: Image.asset(
+                                    'assets/0.png',
+                                  ),
+                                ),
                         trailing: menuIcon.menuIcon(
                             artist: artist,
                             context: context,
