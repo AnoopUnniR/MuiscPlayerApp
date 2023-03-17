@@ -43,13 +43,15 @@ dependencies:
   hive_generator: ^2.0.0
   build_runner: ^2.3.3
   text_scroll: ^0.1.2
-  on_audio_query: ^2.6.1
+  on_audio_query: ^2.6.2
   rxdart: ^0.27.7
   flutter_launcher_icons: ^0.12.0
   path_provider: ^2.0.13
   restart_app: ^1.1.2
   flutter_native_splash: ^2.2.19
   change_app_package_name: ^1.1.0
+  permission_handler: ^10.2.0
+  device_info_plus: ^8.1.0
 
 
 flutter_icons:

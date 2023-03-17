@@ -17,7 +17,6 @@ class ResetApp
         RecentPlayedFunction,
         MostPlayedSongsClass {
   resetAppFunction() async {
-      await player.stop();
       isPlayerOn = false;
       await player.dispose();
       final songDB = await Hive.openBox<SongsListModel>('songs_db');
@@ -39,6 +38,6 @@ class ResetApp
       await getAllRecent();
       await getAllPlaylistSongs();
       await getAllMostPlayed();
-    Restart.restartApp();
+    await Restart.restartApp();
   }
 }

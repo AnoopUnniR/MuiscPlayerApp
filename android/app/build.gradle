@@ -54,12 +54,20 @@ android {
         multiDexEnabled true
 
     }
+    signingConfigs {
+        release {
+            keyAlias 'upload'
+            keyPassword '1234321'
+            storeFile file('keys.properties/upload-keystore.jks')
+            storePassword '1234321'
+        }
+    }
 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }

@@ -5,22 +5,6 @@ import 'package:music_player1/models/models.dart';
 ValueNotifier<List<MostPlayModel>> mostPlayedListNotifier = ValueNotifier([]);
 
 mixin MostPlayedSongsClass {
-  Future<void> addMostSongs(MostPlayModel value) async {
-    List check = [];
-    final mostDB = await Hive.openBox<MostPlayModel>('most_db');
-    for (var song in mostDB.values) {
-      check.add(song.songTitle);
-    }
-    if (check.contains(value.songTitle)) {
-      return;
-    } else {
-      final id = await mostDB.add(value);
-      value.id = id;
-      value.count = 0;
-      await mostDB.put(id, value);
-    }
-  }
-
   updateMostPlayed(MostPlayModel value) async {
     final mostDB = await Hive.openBox<MostPlayModel>('most_db');
     List check = mostDB.values.toList();
@@ -38,20 +22,22 @@ mixin MostPlayedSongsClass {
     for (var song in check) {
       allCountValues.add(song.count);
     }
-    allCountValues.sort();
-    List reversedlist = allCountValues.reversed
-        // .take(8)
-        .where((element) => element != 0)
-        .toSet()
-        .toList();
+    allCountValues.sort((a, b) => b.compareTo(a));
+    List reversedlist =
+        allCountValues.take(8).where((element) => element != 0).toList();
     List intexOfSong = [];
-    for (int count in reversedlist) {
-      int index = check.indexWhere((element) => element.count == count);
-      intexOfSong.add(index);
+    for (var intex in reversedlist) {
+      for (var checking in check) {
+        if (checking.count == intex) {
+          intexOfSong.add(checking.id);
+        }
+      }
     }
+
     List<MostPlayModel> mostPlayedCollections = [];
-    for (int songIntex in intexOfSong) {
+    for (int songIntex in intexOfSong.toSet().toList().take(8)) {
       mostPlayedCollections.add(mostDB.getAt(songIntex)!);
+
     }
 
     mostPlayedListNotifier.value.clear();

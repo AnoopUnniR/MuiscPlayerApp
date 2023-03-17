@@ -19,6 +19,7 @@ import 'package:music_player1/pages/musicPlayerSscreen/music_player_screen.dart'
 import 'package:music_player1/pages/musicPlayerSscreen/playlistPage/playlist_page.dart';
 
 bool? isPlayerOn;
+int? currentSongIndex;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,6 +37,9 @@ class _HomeScreenState extends State<HomeScreen>
         MostPlayedSongsClass {
   @override
   void initState() {
+    addingSongs();
+    var musicFunction = MusicFunctionsClass();
+    musicFunction.songList();
     super.initState();
     getAllFavourites();
     getAllFavourites();
@@ -57,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   List songs = [];
   List songDetails = [];
+
   @override
   Widget build(BuildContext context) {
     var musicFunction = MusicFunctionsClass();
@@ -290,8 +295,10 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   onPressed: () {
                                     musicFunction.playingAudio(0);
-                                    isPlayerOn = true;
-                                    setState(() {});
+                                    if (player.playing) {
+                                      isPlayerOn = true;
+                                      setState(() {});
+                                    }
                                   },
                                 ),
                                 TextButton(
@@ -304,8 +311,10 @@ class _HomeScreenState extends State<HomeScreen>
                                   onPressed: () {
                                     musicFunction
                                         .creatingPlayerListShuffle(songs);
-                                    isPlayerOn = true;
-                                    setState(() {});
+                                    if (player.playing) {
+                                      isPlayerOn = true;
+                                      setState(() {});
+                                    }
                                   },
                                 ),
                               ],
@@ -332,7 +341,6 @@ class _HomeScreenState extends State<HomeScreen>
                         songs.add(song.songuri);
                         songDetails.add(song);
                       }
-                      musicFunction.creatingPlayerList(songs);
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -354,6 +362,9 @@ class _HomeScreenState extends State<HomeScreen>
                               //listing songs//------------------------------------------------
                               child: ListTile(
                                 onTap: () {
+                                  musicFunction.creatingPlayerList(songs);
+                                  songDetailsList.clear();
+                                  songDetailsList.addAll(songDetails);
                                   musicFunction.playingAudio(index);
                                   Navigator.push(
                                     context,
@@ -370,6 +381,9 @@ class _HomeScreenState extends State<HomeScreen>
                                       ),
                                     ),
                                   );
+                                  setState(() {
+                                    isPlayerOn == true;
+                                  });
                                 },
                                 title: Text(
                                   title,
@@ -408,11 +422,15 @@ class _HomeScreenState extends State<HomeScreen>
                       );
                     },
                   ),
-                  player.playing == true
-                      ? const SizedBox(
-                          height: 100,
-                        )
-                      : const Divider(),
+                  Builder(
+                    builder: (context) {
+                      return player.playing == true || isPlayerOn == true
+                          ? const SizedBox(
+                              height: 100,
+                            )
+                          : const Divider();
+                    },
+                  )
                 ],
               ),
             ),
@@ -429,14 +447,17 @@ class _HomeScreenState extends State<HomeScreen>
 
   void updateCurrentPlayingSongDetail(int index) {
     var musicFunction = MusicFunctionsClass();
-    musicFunction.update(songDetails, index);
+    musicFunction.update(songDetailsList, index);
     setState(() {
-      if (songDetails.isNotEmpty) {
-        currentSongTitle = songDetails[index].songTitle;
-        currentSongArtist = songDetails[index].songArtist;
-        currentSongImg = songDetails[index].imageId;
-        currentSongId = songDetails[index].id;
+      if (songDetailsList.isNotEmpty) {
+        currentSongTitle = songDetailsList[index].songTitle;
+        currentSongArtist = songDetailsList[index].songArtist;
+        currentSongImg = songDetailsList[index].imageId;
+        currentSongId = songDetailsList[index].id;
+        currentSongIndex = index;
       }
     });
   }
+
+  addingSongs() async {}
 }

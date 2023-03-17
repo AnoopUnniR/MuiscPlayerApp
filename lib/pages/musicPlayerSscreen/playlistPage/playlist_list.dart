@@ -8,6 +8,7 @@ import 'package:music_player1/pages/musicPlayerSscreen/music_player_screen.dart'
 import 'package:music_player1/pages/musicPlayerSscreen/playlistPage/playlist_add_songs.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:music_player1/pages/musicPlayerSscreen/playlistPage/menu_playlist.dart';
+
 class PlaylsitListPage extends StatefulWidget {
   final String playListname;
   final int id;
@@ -15,16 +16,15 @@ class PlaylsitListPage extends StatefulWidget {
       {super.key, required this.playListname, required this.id});
 
   @override
-  State<PlaylsitListPage> createState() => _PlaylsitListPageState();
+  State<PlaylsitListPage> createState() => PlaylsitListPageState();
 }
 
-class _PlaylsitListPageState extends State<PlaylsitListPage>
-    with PlaylistFunctionsClass ,RecentPlayedFunction,MostPlayedSongsClass{
-    List songDetails = [];
-    List songs = [];
-
-
+class PlaylsitListPageState extends State<PlaylsitListPage>
+    with PlaylistFunctionsClass, RecentPlayedFunction, MostPlayedSongsClass {
   var musicFunction = MusicFunctionsClass();
+  List songDetails = [];
+  List songs = [];
+
   @override
   Widget build(BuildContext context) {
     var menuIcon = MenuIconPlaylistClass();
@@ -62,13 +62,8 @@ class _PlaylsitListPageState extends State<PlaylsitListPage>
                           ),
                         );
                       }
-                      //passing values to concatinating class
-                      for (var song in collection){
-                        songs.add(song.songuri);
-                        songDetails.add(song);
-                        
-                      }
-                      musicFunction.creatingPlayerList(songs);
+                       songDetails.clear();
+                       songs.clear();
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -79,6 +74,10 @@ class _PlaylsitListPageState extends State<PlaylsitListPage>
                           var artist = collection[index].songArtist;
                           var image = collection[index].imageId;
                           var id = collection[index].id;
+                          if (!songs.contains(path)) {
+                            songs.add(path);
+                            songDetails.add(collection[index]);
+                          }
                           // var playListId = collection[index].id;
                           return Padding(
                             padding: const EdgeInsets.only(
@@ -90,9 +89,10 @@ class _PlaylsitListPageState extends State<PlaylsitListPage>
                               ),
                               //listing songs//------------------------------------------------
                               child: ListTile(
-                                onTap: () {
-                                  musicFunction.playingAudio(index);
-                              // musicFunction.update(collection, index);                  
+                                onTap: () async {
+                                  songDetailsList.clear();
+                                  songDetailsList.addAll(songDetails);
+                                  // musicFunction.update(collection, index);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -107,6 +107,8 @@ class _PlaylsitListPageState extends State<PlaylsitListPage>
                                           songDetails: songDetails),
                                     ),
                                   );
+                                  await musicFunction.creatingPlayerList(songs);
+                                  await musicFunction.playingAudio(index);
                                 },
                                 title: Text(
                                   title,
@@ -157,33 +159,31 @@ class _PlaylsitListPageState extends State<PlaylsitListPage>
                 ],
               ),
             ),
-            
             Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PlaylistSongAddPage(
-                            playListid: widget.id,
-                            playlistName: widget.playListname),
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlaylistSongAddPage(
+                                  playListid: widget.id,
+                                  playlistName: widget.playListname),
+                            ),
+                          );
+                        },
+                        child: const Text('Add Songs'),
                       ),
-                    );
-                  },
-                  child: const Text('Add Songs'),
-                ),
-                    MiniPlayerClass(
-                    currentSongTitles: currentSongTitle ?? '', width: width
-                    ),
-                  ],
-                ),
-              )
-            ),
+                      MiniPlayerClass(
+                          currentSongTitles: currentSongTitle ?? '',
+                          width: width),
+                    ],
+                  ),
+                )),
           ],
         ),
       ),

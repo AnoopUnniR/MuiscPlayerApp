@@ -110,7 +110,8 @@ class RecentlyPlayedPage extends StatelessWidget {
                                 ),
                               ),
                               onTap: () async{
-      
+                                songDetailsList.clear();
+                                  songDetailsList.addAll(recentList);
                               // musicFunction.update(reversed,index);
                                 Navigator.push(
                                   context,

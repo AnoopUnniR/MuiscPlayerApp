@@ -8,6 +8,8 @@ mixin AllSongsClass {
   Future<void> addSongs(SongsListModel value) async {
     List check = [];
     final songDB = await Hive.openBox<SongsListModel>('songs_db');
+    final mostDB = await Hive.openBox<MostPlayModel>('most_db');
+
     for (var song in songDB.values) {
       check.add(song.songTitle);
     }
@@ -18,6 +20,15 @@ mixin AllSongsClass {
       value.id = id;
       await songDB.put(id, value);
       await getAllSongs();
+      var listSongMostPlayed = MostPlayModel(
+        songTitle: value.songTitle,
+        songuri: value.songuri,
+        imageId: value.imageId,
+        songArtist: value.songArtist,
+        id: value.id,
+        count: 0
+      );
+     await mostDB.add(listSongMostPlayed);
     }
   }
 

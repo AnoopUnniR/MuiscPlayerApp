@@ -26,7 +26,7 @@ class EditplayListName with PlaylistFunctionsClass {
                 }
               },
               decoration: const InputDecoration(
-                  labelText: 'Playlist ame',
+                  labelText: 'Playlist name',
                   contentPadding: EdgeInsets.all(8),
                   border: OutlineInputBorder()),
               style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
@@ -36,13 +36,22 @@ class EditplayListName with PlaylistFunctionsClass {
         actions: [
           ElevatedButton(
             onPressed: () {
-              String editedName = updateController.text.trim();
+             if (updateController.text
+                                  .trim()
+                                  .isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const  SnackBar(
+                                        content: Text('Please enter a name')));
+                              }
+             else{
+               String editedName = updateController.text.trim();
                 var value =
                     PlayListModel(playlistName: editedName, playListId: id);
                 updatePlaylist(value, index);
                 updateController.clear();
                 Navigator.pop(context);
               
+             }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xff8177ea),

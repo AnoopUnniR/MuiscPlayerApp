@@ -1,5 +1,4 @@
 import 'package:music_player1/functions/databaseFunctions/favourites_db.dart';
-import 'package:music_player1/functions/music_functions.dart';
 import 'package:music_player1/models/models.dart';
 import 'package:music_player1/pages/musicPlayerSscreen/playlistPage/playlist_dialog_box.dart';
 import 'package:rxdart/rxdart.dart';
@@ -68,12 +67,19 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
     });
   }
 
+  addingSongsDetails() {
+    if (widget.songDetails.isNotEmpty) {
+      songDetailsList.clear();
+      songDetailsList.addAll(widget.songDetails);
+    }
+  }
+
 //used to control the player playpause
   bool play = true;
   var playlistAddButton = PlaylistAddDialogue();
   @override
   Widget build(BuildContext context) {
-    songDetailsList = widget.songDetails;
+    // addingSongsDetails();
     bool? isFav = isInFav(currentSongId ?? widget.id);
     var iconColor = const Color.fromARGB(255, 238, 238, 238);
     currentSongImg = widget.imageId;
@@ -101,6 +107,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                   child: QueryArtworkWidget(
                     id: currentSongImg!,
                     type: ArtworkType.AUDIO,
+                    artworkFit: BoxFit.cover,
                     nullArtworkWidget: Image.asset(
                       'assets/icon.png',
                     ),
@@ -160,9 +167,10 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                                         currentSongId ?? widget.id,
                                         context,
                                         currentSongTitle ?? widget.title);
-                                    isFav = false;
 
-                                    setState(() {});
+                                    setState(() {
+                                      isFav = false;
+                                    });
                                   },
                                   icon: const Icon(
                                     Icons.favorite,
@@ -286,7 +294,6 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
                               setState(() {
                                 player.seekToNext();
                               });
-                              // setState(() {});
                             },
                             icon: Icon(
                               Icons.skip_next_outlined,
@@ -311,16 +318,17 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
   }
 
   void updateCurrentPlayingSongDetails(int index) {
-    final musicFunction = MusicFunctionsClass();
-    musicFunction.update(widget.songDetails, index);
+    // final musicFunction = MusicFunctionsClass();
+    // musicFunction.update(widget.songDetails, index);
     setState(() {
-      if (widget.songDetails.isNotEmpty) {
-        currentSongTitle = widget.songDetails[index].songTitle;
-        currentSongArtist = widget.songDetails[index].songArtist;
-        currentSongImg = widget.songDetails[index].imageId;
-        currentSongId = widget.songDetails[index].id;
-        currentSongPath = widget.songDetails[index].songuri;
+      if (songDetailsList.isNotEmpty) {
+        currentSongTitle = songDetailsList[index].songTitle;
+        currentSongArtist = songDetailsList[index].songArtist;
+        currentSongImg = songDetailsList[index].imageId;
+        currentSongId = songDetailsList[index].id;
+        currentSongPath = songDetailsList[index].songuri;
       }
+
     });
   }
 }

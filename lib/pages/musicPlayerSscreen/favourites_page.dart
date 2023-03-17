@@ -90,6 +90,8 @@ class _FavouritesPageState extends State<FavouritesPage>
                             contentPadding:
                                 const EdgeInsets.symmetric(horizontal: 10),
                             onTap: () async {
+                              songDetailsList.clear();
+                                  songDetailsList.addAll(favouritesDetails);
                               // musicFunction.update(favouritesLists, index);
                               Navigator.push(
                                 context,
@@ -139,7 +141,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                               tooltip: 'remove',
                               onPressed: () {
                                 deleteFavourite(id!, context, title);
-                                favouritesDetails.removeAt(index);
+                                // favouritesDetails.removeAt(index);
                               },
                             ),
                           ),

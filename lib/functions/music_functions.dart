@@ -24,13 +24,6 @@ class MusicFunctionsClass
           songArtist: song.artist,
           imageId: song.id);
       await addSongs(listSongs);
-      var listSongMostPlayed = MostPlayModel(
-        songTitle: song.title,
-        songuri: song.uri!,
-        imageId: song.id,
-        songArtist: song.artist,
-      );
-      await addMostSongs(listSongMostPlayed);
     }
   }
 
@@ -68,10 +61,10 @@ class MusicFunctionsClass
     await player.play();
   }
 
-  void playingAudio(index) async {
-    await player.stop();
+  Future<void> playingAudio(index) async {
+      await player.stop();  
     await player.setAudioSource(playing!,
-        initialPosition: Duration.zero, initialIndex: index);
+      initialPosition: Duration.zero, initialIndex: index);
     await player.play();
   }
 

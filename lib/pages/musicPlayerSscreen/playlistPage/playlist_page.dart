@@ -53,9 +53,9 @@ class _PlayListPageState extends State<PlayListPage>
                 //create new playlist button
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 119, 109, 234)),
+                      backgroundColor:
+                          const Color.fromARGB(255, 119, 109, 234)),
                   onPressed: () {
-                    
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -73,11 +73,10 @@ class _PlayListPageState extends State<PlayListPage>
                             child: TextFormField(
                               controller: playlistNameController,
                               validator: (value) {
-                                if (playlistNameController.text.isEmpty ||
-                                    playlistNameController.text
-                                        .trim()
-                                        .isEmpty) {
-                                  return 'name required';
+                                if (playlistNameController.text
+                                    .trim()
+                                    .isEmpty) {
+                                  return 'name is required';
                                 } else {
                                   return null;
                                 }
@@ -106,6 +105,12 @@ class _PlayListPageState extends State<PlayListPage>
                                         'playlist with name "${playlistNameController.text}" already exists'),
                                   ),
                                 );
+                              } else if (playlistNameController.text
+                                  .trim()
+                                  .isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const  SnackBar(
+                                        content: Text('Please enter a name')));
                               } else {
                                 createPlaylist(
                                   PlayListModel(
@@ -199,32 +204,34 @@ class _PlayListPageState extends State<PlayListPage>
                                               onPressed: () {
                                                 showDialog(
                                                   context: context,
-                                                  builder: (context) => AlertDialog(
-                                                      title: Text(
-                                                          'Do you want to delete the playlist ${playListName[index]}?'),
-                                                      actions: [
-                                                        ElevatedButton(
-                                                          onPressed: () {
-                                                            deletePlaylist(
-                                                                index,
-                                                                playListIds[
-                                                                    index]);
-                                                            setState(() {});
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                          child: const Text(
-                                                              'Delete'),
-                                                        ),
-                                                        ElevatedButton(
-                                                          onPressed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                          child: const Text(
-                                                              "Cancel"),
-                                                        )
-                                                      ],),
+                                                  builder: (context) =>
+                                                      AlertDialog(
+                                                    title: Text(
+                                                        'Do you want to delete the playlist ${playListName[index]}?'),
+                                                    actions: [
+                                                      ElevatedButton(
+                                                        onPressed: () {
+                                                          deletePlaylist(
+                                                              index,
+                                                              playListIds[
+                                                                  index]);
+                                                          // setState(() {});
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: const Text(
+                                                            'Delete'),
+                                                      ),
+                                                      ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: const Text(
+                                                            "Cancel"),
+                                                      )
+                                                    ],
+                                                  ),
                                                 );
                                               },
                                             ),

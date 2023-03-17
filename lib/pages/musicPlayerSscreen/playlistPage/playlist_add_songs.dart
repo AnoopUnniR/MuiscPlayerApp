@@ -5,6 +5,7 @@ import 'package:music_player1/functions/databaseFunctions/recent_played_db.dart'
 import 'package:music_player1/functions/music_functions.dart';
 import 'package:music_player1/models/models.dart';
 import 'package:music_player1/pages/musicPlayerSscreen/music_player_screen.dart';
+import 'package:music_player1/pages/musicPlayerSscreen/playlistPage/playlist_list.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class PlaylistSongAddPage extends StatefulWidget {
@@ -18,28 +19,30 @@ class PlaylistSongAddPage extends StatefulWidget {
 }
 
 class PlaylistSongAddPageState extends State<PlaylistSongAddPage>
-    with AllSongsClass, PlaylistFunctionsClass,RecentPlayedFunction {
+    with AllSongsClass, PlaylistFunctionsClass, RecentPlayedFunction {
   @override
   void initState() {
     super.initState();
     getAllPlaylistSongs();
   }
 
-  var musicFunctions =  MusicFunctionsClass();
+  final musicFunctions = MusicFunctionsClass();
+  final playlistSongs = PlaylsitListPageState();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Add Songs"),
-          centerTitle: true,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
+        title: const Text("Add Songs"),
+        centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
           ),
-          toolbarHeight: 50,
-          backgroundColor: const Color.fromARGB(255, 38, 32, 63)),
+        ),
+        toolbarHeight: 50,
+        backgroundColor: const Color.fromARGB(255, 38, 32, 63),
+      ),
       body: SafeArea(
         child: Stack(
           children: [

@@ -20,7 +20,6 @@ mixin PlaylistFunctionsClass {
     playListNotifier.value.addAll(playlistDB.values);
     // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
     playListNotifier.notifyListeners();
-    
   }
 
   deletePlaylist(int index, int id) async {
@@ -31,8 +30,10 @@ mixin PlaylistFunctionsClass {
     List songs = playlistsongDB.values.toList();
     List playlistSongs =
         songs.where((element) => element.playlistId == id).toList();
-    for (var song in playlistSongs) {
-      removeFromPlaylistDelete(song.songid);
+    if (playlistSongs.isNotEmpty) {
+      for (var song in playlistSongs) {
+        removeFromPlaylistDelete(song.id);
+      }
     }
     await getAllPlaylist();
   }

@@ -12,16 +12,14 @@ mixin RecentPlayedFunction {
   ) async {
     final recentDB = await Hive.openBox<RecentPlayModel>('recent_db');
     final recentlist = recentDB.values.toList();
-    bool checkSong =
-        recentlist.where((element) => element.id == value.id).isEmpty;
-    if (checkSong) {
+    int index = recentlist.indexWhere((element) => element.id == value.id);
+    if (index == -1) {
       await recentDB.add(value);
     } else {
-      int index = recentlist.indexWhere((element) => element.id == value.id);
-      await recentDB.deleteAt(index);
-      await recentDB.add(value);
+      recentDB.deleteAt(index);
+       recentDB.add(value);
     }
-    if (recentDB.length > 8) {
+    if (recentDB.values.length > 8) {
       await recentDB.deleteAt(0);
     }
     // await recentDB.clear();

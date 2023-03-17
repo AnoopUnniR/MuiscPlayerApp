@@ -7,15 +7,16 @@ import 'package:music_player1/pages/menuIcon/menu_icon.dart';
 import 'package:music_player1/pages/musicPlayerSscreen/music_player_screen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-String search = '';
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
   @override
   State<SearchPage> createState() => SearchPageState();
 }
-class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedFunction,MostPlayedSongsClass {
-  final _musicFunction = MusicFunctionsClass();
 
+class SearchPageState extends State<SearchPage>
+    with AllSongsClass, RecentPlayedFunction, MostPlayedSongsClass {
+  final _musicFunction = MusicFunctionsClass();
+    String search = '';
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -28,9 +29,8 @@ class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedF
             alignment: Alignment.centerLeft,
             color: const Color.fromARGB(255, 38, 32, 63),
             child: TextField(
-              style:const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
-                  
                   border: InputBorder.none,
                   hintStyle: TextStyle(color: Colors.white),
                   hintText: 'search here...',
@@ -98,20 +98,22 @@ class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedF
                       //listing songs//------------------------------------------------
                       child: ListTile(
                         onTap: () async {
-                          _musicFunction.playingAudio(index);
+                          int searchResultId = 
+                          songLists.indexWhere((element) => element.id == findList[index].id);
+                          _musicFunction.playingAudio(searchResultId);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => MusicPlayerScreen(
-                                  pathAudio: path,
-                                  index: index,
-                                  artist: artist,
-                                  title: title,
-                                  imageId: image,
-                                  id: id!,
-                                  songPath: const [],
-                                  songDetails: const [],
-                                ),
+                                pathAudio: path,
+                                index: index,
+                                artist: artist,
+                                title: title,
+                                imageId: image,
+                                id: id!,
+                                songPath: const [],
+                                songDetails: const [],
+                              ),
                             ),
                           );
                         },
@@ -128,19 +130,20 @@ class SearchPageState extends State<SearchPage> with AllSongsClass,RecentPlayedF
                           style: const TextStyle(color: Colors.white),
                         ),
                         leading: QueryArtworkWidget(
-                                  id: image!,
-                                  type: ArtworkType.AUDIO,
-                                  nullArtworkWidget: Image.asset(
-                                    'assets/0.png',
-                                  ),
-                                ),
+                          id: image!,
+                          type: ArtworkType.AUDIO,
+                          nullArtworkWidget: Image.asset(
+                            'assets/0.png',
+                          ),
+                        ),
                         trailing: menuIcon.menuIcon(
-                            artist: artist,
-                            context: context,
-                            id: id,
-                            image: image,
-                            path: path,
-                            title: title,),
+                          artist: artist,
+                          context: context,
+                          id: id,
+                          image: image,
+                          path: path,
+                          title: title,
+                        ),
                       ),
                     );
                   },

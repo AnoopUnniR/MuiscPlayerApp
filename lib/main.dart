@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_player1/functions/music_functions.dart';
 import 'package:music_player1/models/models.dart';
-import 'package:music_player1/pages/home_screen.dart';
 import 'package:music_player1/pages/splash_screen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 final OnAudioQuery audioQuery = OnAudioQuery();
 final player = AudioPlayer();
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -30,13 +29,34 @@ Future<void> main() async {
   if (!Hive.isAdapterRegistered(MostPlayModelAdapter().typeId)) {
     Hive.registerAdapter(MostPlayModelAdapter());
   }
-  bool status = await audioQuery.permissionsStatus();
-  if (!status) {
-    await audioQuery.permissionsRequest();
-  }
 
-  var musicFunction = MusicFunctionsClass();
-  await musicFunction.songList();
+  //permission using permission handler
+  // final androidInfo = await DeviceInfoPlugin().androidInfo;
+  // late final Map<Permission, PermissionStatus> statuses;
+  // if (androidInfo.version.sdkInt <= 32) {
+  //   statuses = await [Permission.storage].request();
+  // } else {
+  //   statuses = await [Permission.storage].request();
+  // }
+  // var allAccepted = true;
+  // statuses.forEach((permission, status) {
+  //   if (status != PermissionStatus.granted) {
+  //     allAccepted = true;
+  //   }
+  // });
+  // if (allAccepted) {
+  //   await musicFunction.songList();
+  // }
+
+  // permission using on audioquery
+    await audioQuery.permissionsRequest();
+
+  // bool status = await audioQuery.permissionsStatus();
+  // if (status) {
+  //   await audioQuery.permissionsRequest();
+  // }
+
+  // await musicFunction.songList();
   runApp(const MyApp());
 }
 
