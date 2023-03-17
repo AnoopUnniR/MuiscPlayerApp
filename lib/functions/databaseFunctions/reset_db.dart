@@ -17,27 +17,27 @@ class ResetApp
         RecentPlayedFunction,
         MostPlayedSongsClass {
   resetAppFunction() async {
-      isPlayerOn = false;
-      await player.dispose();
-      final songDB = await Hive.openBox<SongsListModel>('songs_db');
-      final favouritesDB = await Hive.openBox<FavouritesModel>('favourites');
-      final playlistDB = await Hive.openBox<PlayListModel>('playlist_db');
-      final playListSongsDB =
-          await Hive.openBox<PlayListSongsModel>('playlistsongs_db');
-      final recentDB = await Hive.openBox<RecentPlayModel>('recent_db');
-      final mostDB = await Hive.openBox<MostPlayModel>('most_db');
-      await songDB.clear();
-      await favouritesDB.clear();
-      await playListSongsDB.clear();
-      await playlistDB.clear();
-      await recentDB.clear();
-      await mostDB.clear();
-      await getAllSongs();
-      await getAllFavourites();
-      await getAllPlaylist();
-      await getAllRecent();
-      await getAllPlaylistSongs();
-      await getAllMostPlayed();
+    isPlayerOn = false;
+    await player.dispose();
+    final songDB = await Hive.openBox<SongsListModel>('songs_db');
+    final favouritesDB = await Hive.openBox<FavouritesModel>('favourites');
+    final playlistDB = await Hive.openBox<PlayListModel>('playlist_db');
+    final playListSongsDB =
+        await Hive.openBox<PlayListSongsModel>('playlistsongs_db');
+    final recentDB = await Hive.openBox<RecentPlayModel>('recent_db');
+    final mostDB = await Hive.openBox<MostPlayModel>('most_db');
+    await songDB.clear();
+    await favouritesDB.clear();
+    await playListSongsDB.clear();
+    await playlistDB.clear();
+    await recentDB.clear();
+    await mostDB.clear();
+    await getAllSongs();
+    await getAllFavourites();
+    await getAllPlaylist();
+    await getAllRecent();
+    await getAllPlaylistSongs();
+    await getAllMostPlayed();
     await Restart.restartApp();
   }
 }

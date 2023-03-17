@@ -37,7 +37,6 @@ mixin MostPlayedSongsClass {
     List<MostPlayModel> mostPlayedCollections = [];
     for (int songIntex in intexOfSong.toSet().toList().take(8)) {
       mostPlayedCollections.add(mostDB.getAt(songIntex)!);
-
     }
 
     mostPlayedListNotifier.value.clear();

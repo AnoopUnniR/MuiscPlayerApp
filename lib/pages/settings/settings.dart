@@ -57,11 +57,16 @@ class SettingsPage extends StatelessWidget {
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(10)),
               child: ListTile(
-                title:const Text(
+                title: const Text(
                   'Privacy Policy',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const PrivacyPage(),)),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PrivacyPage(),
+                  ),
+                ),
               ),
             ),
           ),
@@ -121,8 +126,9 @@ class SettingsPage extends StatelessWidget {
                           child: const Text('Yes'),
                         ),
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 119, 109, 234)),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 119, 109, 234)),
                             onPressed: () {
                               Navigator.pop(context);
                             },

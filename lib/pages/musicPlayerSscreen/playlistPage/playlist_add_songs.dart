@@ -28,6 +28,8 @@ class PlaylistSongAddPageState extends State<PlaylistSongAddPage>
 
   final musicFunctions = MusicFunctionsClass();
   final playlistSongs = PlaylsitListPageState();
+  List songs = [];
+  List songDetails = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +60,10 @@ class PlaylistSongAddPageState extends State<PlaylistSongAddPage>
                     ),
                   );
                 }
+                for (var song in songLists) {
+                  songs.add(song.songuri);
+                  songDetails.add(song);
+                }
                 return ListView.builder(
                   shrinkWrap: true,
                   itemCount: songLists.length,
@@ -80,15 +86,11 @@ class PlaylistSongAddPageState extends State<PlaylistSongAddPage>
                         //listing songs//------------------------------------------------
                         child: ListTile(
                           onTap: () async {
+                            musicFunctions.creatingPlayerList(songs);
                             musicFunctions.playingAudio(index);
-                            // var recent = RecentPlayModel(
-                            //     songTitle: title,
-                            //     songuri: path,
-                            //     imageId: image,
-                            //     id: id,
-                            //     songArtist: artist);
-                            // addRecent(recent);
-                            Navigator.pushReplacement(
+                            songDetailsList.clear();
+                            songDetailsList.addAll(songDetails);
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => MusicPlayerScreen(

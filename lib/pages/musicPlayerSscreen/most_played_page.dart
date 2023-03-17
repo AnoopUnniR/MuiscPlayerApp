@@ -43,7 +43,10 @@ class MostPlayedPage extends StatelessWidget {
                           return SizedBox(
                             height: height,
                             child: const Center(
-                              child: Text('nothing to show',style: TextStyle(color: Colors.white),),
+                              child: Text(
+                                'nothing to show',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           );
                         }
@@ -71,7 +74,12 @@ class MostPlayedPage extends StatelessWidget {
                                 color: Colors.white,
                                 child: Stack(
                                   children: [
-                                    Align(alignment: Alignment.topLeft,child: Text(mostPlayedDetails[index].count.toString()),),
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(mostPlayedDetails[index]
+                                          .count
+                                          .toString()),
+                                    ),
                                     Align(
                                         alignment: Alignment.topRight,
                                         child: menuButton.menuIcon(
@@ -108,7 +116,7 @@ class MostPlayedPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: ()async {
+                              onTap: () async {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -124,11 +132,10 @@ class MostPlayedPage extends StatelessWidget {
                                     ),
                                   ),
                                 );
-                           await musicFunction.creatingPlayerList(mostPlayedPlayer);
-                           musicFunction.playingAudio(index);
-                              // musicFunction.update(mostPlayedList,index);
-
-                                
+                                await musicFunction
+                                    .creatingPlayerList(mostPlayedPlayer);
+                                musicFunction.playingAudio(index);
+                                // musicFunction.update(mostPlayedList,index);
                               },
                             );
                           },

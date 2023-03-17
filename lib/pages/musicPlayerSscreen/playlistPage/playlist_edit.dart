@@ -19,7 +19,8 @@ class EditplayListName with PlaylistFunctionsClass {
               controller: updateController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
-                if (updateController.text.isEmpty||updateController.text.trim().isEmpty) {
+                if (updateController.text.isEmpty ||
+                    updateController.text.trim().isEmpty) {
                   return 'name required';
                 } else {
                   return null;
@@ -36,22 +37,17 @@ class EditplayListName with PlaylistFunctionsClass {
         actions: [
           ElevatedButton(
             onPressed: () {
-             if (updateController.text
-                                  .trim()
-                                  .isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const  SnackBar(
-                                        content: Text('Please enter a name')));
-                              }
-             else{
-               String editedName = updateController.text.trim();
+              if (updateController.text.trim().isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Please enter a name')));
+              } else {
+                String editedName = updateController.text.trim();
                 var value =
                     PlayListModel(playlistName: editedName, playListId: id);
                 updatePlaylist(value, index);
                 updateController.clear();
                 Navigator.pop(context);
-              
-             }
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xff8177ea),

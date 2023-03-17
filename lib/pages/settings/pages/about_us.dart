@@ -17,10 +17,15 @@ class AboutUsPage extends StatelessWidget {
         toolbarHeight: 50,
         backgroundColor: const Color.fromARGB(255, 38, 32, 63),
       ),
-      body:const SafeArea(
-          child: Padding(padding:EdgeInsets.all(16),
-          child: Text('A simple music player created with flutter with easy to use functionalities and UI',
-          style: TextStyle(color: Colors.white,fontSize: 15),),),),
+      body: const SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Text(
+            'A simple music player created with flutter with easy to use functionalities and UI',
+            style: TextStyle(color: Colors.white, fontSize: 15),
+          ),
+        ),
+      ),
     );
   }
 }

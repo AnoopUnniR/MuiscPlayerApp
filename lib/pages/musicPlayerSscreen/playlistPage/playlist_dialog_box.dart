@@ -36,20 +36,25 @@ class PlaylistAddDialogue with PlaylistFunctionsClass {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                       const Text(
+                        const Text(
                           'No Playlists created.',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 119, 109, 234),),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 119, 109, 234),
+                            ),
                             onPressed: () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const PlayListPage(),
-                                  ),);
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const PlayListPage(),
+                                ),
+                              );
                             },
                             child: const Text('Go to Playlist Page'))
                       ],

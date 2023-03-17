@@ -21,14 +21,13 @@ mixin AllSongsClass {
       await songDB.put(id, value);
       await getAllSongs();
       var listSongMostPlayed = MostPlayModel(
-        songTitle: value.songTitle,
-        songuri: value.songuri,
-        imageId: value.imageId,
-        songArtist: value.songArtist,
-        id: value.id,
-        count: 0
-      );
-     await mostDB.add(listSongMostPlayed);
+          songTitle: value.songTitle,
+          songuri: value.songuri,
+          imageId: value.imageId,
+          songArtist: value.songArtist,
+          id: value.id,
+          count: 0);
+      await mostDB.add(listSongMostPlayed);
     }
   }
 

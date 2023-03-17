@@ -14,23 +14,3 @@ Widget circleUI(double start, double y) {
 }
 
 //semi circle design under appbar
-Widget circleWidget() {
-  return Stack(
-    children: [
-      Align(
-        alignment: const AlignmentDirectional(0, -3),
-        child: Container(
-          width: 400,
-          height: 400,
-          // color: Colors.blue,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(
-              Radius.circular(400),
-            ),
-            color: Color(0xff121526),
-          ),
-        ),
-      ),
-    ],
-  );
-}

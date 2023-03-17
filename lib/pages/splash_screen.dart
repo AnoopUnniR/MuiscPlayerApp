@@ -31,14 +31,22 @@ class MyHomePageState extends State<SplashScreenPage> with AllSongsClass {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff121526),
-      body: Center(child: Column(
+      body: Center(
+          child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const SizedBox(),
-          CircleAvatar(radius: 40,backgroundColor:const Color(0xff121526) ,child: Image.asset('assets/app_icon.png'),),
+          CircleAvatar(
+            radius: 40,
+            backgroundColor: const Color(0xff121526),
+            child: Image.asset('assets/app_icon.png'),
+          ),
           const Padding(
-            padding:  EdgeInsets.all(30.0),
-            child:  Text('Loading...',style: TextStyle(color: Colors.white),),
+            padding: EdgeInsets.all(30.0),
+            child: Text(
+              'Loading...',
+              style: TextStyle(color: Colors.white),
+            ),
           )
         ],
       )),

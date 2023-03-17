@@ -328,7 +328,6 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen>
         currentSongId = songDetailsList[index].id;
         currentSongPath = songDetailsList[index].songuri;
       }
-
     });
   }
 }

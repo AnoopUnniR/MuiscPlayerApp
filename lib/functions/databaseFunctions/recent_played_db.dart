@@ -17,7 +17,7 @@ mixin RecentPlayedFunction {
       await recentDB.add(value);
     } else {
       recentDB.deleteAt(index);
-       recentDB.add(value);
+      recentDB.add(value);
     }
     if (recentDB.values.length > 8) {
       await recentDB.deleteAt(0);

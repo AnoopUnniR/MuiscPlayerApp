@@ -16,7 +16,7 @@ class SearchPage extends StatefulWidget {
 class SearchPageState extends State<SearchPage>
     with AllSongsClass, RecentPlayedFunction, MostPlayedSongsClass {
   final _musicFunction = MusicFunctionsClass();
-    String search = '';
+  String search = '';
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -98,8 +98,8 @@ class SearchPageState extends State<SearchPage>
                       //listing songs//------------------------------------------------
                       child: ListTile(
                         onTap: () async {
-                          int searchResultId = 
-                          songLists.indexWhere((element) => element.id == findList[index].id);
+                          int searchResultId = songLists.indexWhere(
+                              (element) => element.id == findList[index].id);
                           _musicFunction.playingAudio(searchResultId);
                           Navigator.pushReplacement(
                             context,

@@ -62,8 +62,8 @@ class PlaylsitListPageState extends State<PlaylsitListPage>
                           ),
                         );
                       }
-                       songDetails.clear();
-                       songs.clear();
+                      songDetails.clear();
+                      songs.clear();
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

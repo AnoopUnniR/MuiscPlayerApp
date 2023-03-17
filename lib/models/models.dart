@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 part 'models.g.dart';
+
 // for all songs from storage
 @HiveType(typeId: 1)
 class SongsListModel {
@@ -24,6 +25,7 @@ class SongsListModel {
       required this.songuri,
       required this.imageId});
 }
+
 // for favouriites
 @HiveType(typeId: 2)
 class FavouritesModel {
@@ -59,7 +61,7 @@ class PlayListModel {
   });
 }
 
-// for recently played 
+// for recently played
 @HiveType(typeId: 4)
 class RecentPlayModel {
   @HiveField(0)

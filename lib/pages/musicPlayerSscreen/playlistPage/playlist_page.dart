@@ -109,7 +109,7 @@ class _PlayListPageState extends State<PlayListPage>
                                   .trim()
                                   .isEmpty) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const  SnackBar(
+                                    const SnackBar(
                                         content: Text('Please enter a name')));
                               } else {
                                 createPlaylist(

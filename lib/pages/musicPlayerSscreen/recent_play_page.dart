@@ -33,7 +33,7 @@ class RecentlyPlayedPage extends StatelessWidget {
         child: SafeArea(
           child: Stack(
             children: [
-              SingleChildScrollView(               
+              SingleChildScrollView(
                 child: Column(
                   children: [
                     ValueListenableBuilder(
@@ -44,7 +44,10 @@ class RecentlyPlayedPage extends StatelessWidget {
                           return SizedBox(
                             height: height,
                             child: const Center(
-                              child: Text('nothing to show',style: TextStyle(color: Colors.white),),
+                              child: Text(
+                                'nothing to show',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           );
                         }
@@ -67,7 +70,7 @@ class RecentlyPlayedPage extends StatelessWidget {
                             var title = recentDetails[index].songTitle;
                             var artist = recentDetails[index].songArtist!;
                             var image = recentDetails[index].imageId;
-                            var id = recentDetails[index].id;          
+                            var id = recentDetails[index].id;
                             return InkWell(
                               child: Card(
                                 color: Colors.white,
@@ -109,10 +112,10 @@ class RecentlyPlayedPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () async{
+                              onTap: () async {
                                 songDetailsList.clear();
-                                  songDetailsList.addAll(recentList);
-                              // musicFunction.update(reversed,index);
+                                songDetailsList.addAll(recentList);
+                                // musicFunction.update(reversed,index);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -128,8 +131,9 @@ class RecentlyPlayedPage extends StatelessWidget {
                                     ),
                                   ),
                                 );
-                             await musicFunction.creatingPlayerList(recentPlayer);
-                              musicFunction.playingAudio(index);
+                                await musicFunction
+                                    .creatingPlayerList(recentPlayer);
+                                musicFunction.playingAudio(index);
                               },
                             );
                           },

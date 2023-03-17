@@ -54,9 +54,9 @@ class _FavouritesPageState extends State<FavouritesPage>
                 builder: (BuildContext context,
                     List<FavouritesModel> favouritesLists, Widget? child) {
                   if (favouritesLists.isEmpty) {
-                    return  SizedBox(
+                    return SizedBox(
                       height: height,
-                      child:const Center(
+                      child: const Center(
                         child: Text(
                           'nothing to show',
                           style: TextStyle(color: Colors.white),
@@ -91,7 +91,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                                 const EdgeInsets.symmetric(horizontal: 10),
                             onTap: () async {
                               songDetailsList.clear();
-                                  songDetailsList.addAll(favouritesDetails);
+                              songDetailsList.addAll(favouritesDetails);
                               // musicFunction.update(favouritesLists, index);
                               Navigator.push(
                                 context,
@@ -112,7 +112,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                                   .creatingPlayerList(favourites);
                               musicFunction.playingAudio(index);
                               setState(() {
-                                isPlayerOn= true;
+                                isPlayerOn = true;
                               });
                             },
                             title: Text(

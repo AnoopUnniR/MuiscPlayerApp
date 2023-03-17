@@ -62,9 +62,9 @@ class MusicFunctionsClass
   }
 
   Future<void> playingAudio(index) async {
-      await player.stop();  
+    await player.stop();
     await player.setAudioSource(playing!,
-      initialPosition: Duration.zero, initialIndex: index);
+        initialPosition: Duration.zero, initialIndex: index);
     await player.play();
   }
 
