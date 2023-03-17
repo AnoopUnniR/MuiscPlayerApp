@@ -341,6 +341,8 @@ class _HomeScreenState extends State<HomeScreen>
                         songs.add(song.songuri);
                         songDetails.add(song);
                       }
+                      songDetailsList.clear();
+                      songDetailsList.addAll(songDetails);
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

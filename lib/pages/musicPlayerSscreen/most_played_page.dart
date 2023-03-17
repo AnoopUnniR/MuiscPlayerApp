@@ -74,12 +74,12 @@ class MostPlayedPage extends StatelessWidget {
                                 color: Colors.white,
                                 child: Stack(
                                   children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(mostPlayedDetails[index]
-                                          .count
-                                          .toString()),
-                                    ),
+                                    // Align(
+                                    //   alignment: Alignment.topLeft,
+                                    //   child: Text(mostPlayedDetails[index]
+                                    //       .count
+                                    //       .toString()),
+                                    // ),
                                     Align(
                                         alignment: Alignment.topRight,
                                         child: menuButton.menuIcon(

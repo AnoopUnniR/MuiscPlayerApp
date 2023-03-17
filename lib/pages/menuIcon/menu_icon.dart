@@ -15,7 +15,7 @@ class MenuIconClass extends PlaylistAddDialogue with FavouriteFunctionClass {
   }) {
     image = image;
     return IconButton(
-      icon: const Icon(Icons.more_vert_outlined, size: 30),
+      icon:const Icon(Icons.more_vert_outlined, size: 30),
       color: const Color(0xff8177ea),
       onPressed: () {
         showModalBottomSheet(
